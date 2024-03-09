@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="blog/default/header::head-fragment"></head>
+<body>
+<header th:replace="blog/default/header::header-fragment"></header>
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 blog-main">
+                <article class="blog-post">
+                    <div class="body">
+                        <div class="favorite-links">
+                            <th:block th:unless="${#lists.isEmpty(favoriteLinks)}">
+                                <h2>Friend chains</h2>
+                                <ul>
+                                    <th:block th:each="favoriteLink : ${favoriteLinks}">
+                                        <li><a th:href="@{${favoriteLink.linkUrl}}"
+                                               th:text="${favoriteLink.linkName}">Friend chains</a>
+                                            -
+                                            <th:block th:text="${favoriteLink.linkDescription}"></th:block>
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </th:block>
+                            <th:block th:unless="${#lists.isEmpty(recommendLinks)}">
+                                <h2>Referral sites</h2>
+                                <ul>
+                                    <th:block th:each="recommendLink : ${recommendLinks}">
+                                        <li><a th:href="@{${recommendLink.linkUrl}}" th:text="${recommendLink.linkName}">Referral sites</a>
+                                            -
+                                            <th:block th:text="${recommendLink.linkDescription}"></th:block>
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </th:block>
+                            <th:block th:unless="${#lists.isEmpty(personalLinks)}">
+                                <h2>Personal Links</h2>
+                                <ul>
+                                    <th:block th:each="personalLink : ${personalLinks}">
+                                        <li><a th:href="@{${personalLink.linkUrl}}"
+                                               th:text="${personalLink.linkName}">Personal Links</a>
+                                            -
+                                            <th:block th:text="${personalLink.linkDescription}"></th:block>
+                                        </li>
+                                    </th:block>
+                                </ul>
+                            </th:block>
+                            <h2 id="Personal Links">Links</h2>
+                            <p>Welcome to swap Friend chains ^_^ However, please make sure that your site is working properly.</p>
+                            <p>My email address is <th:block th:text="${configurations.get('yourEmail')}"></th:block> , The format requirements are as follows:</p>
+                            <ul>
+                                <li>Website name: 13 blog</li>
+                                <li>Website link: http://13 blog.site</li>
+                                <li>Site description: Hardik Mangukiya's personal blog</li>
+                            </ul>
+
+                            <p>Please ensure that your links are valid for a long time, otherwise they may be cleaned up.</p>
+
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Introduce a footerfooter-fragment -->
+<footer th:replace="blog/default/footer::footer-fragment"></footer>
+<script th:src="@{/blog/default/js/jquery.min.js}"></script>
+<script th:src="@{/blog/default/js/bootstrap.min.js}"></script>
+<script th:src="@{/blog/default/js/modernizr.js}"></script>
+<script th:src="@{/blog/default/js/search.js}"></script>
+</body>
+</html>
